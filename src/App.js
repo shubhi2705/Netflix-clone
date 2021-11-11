@@ -9,13 +9,14 @@ import {auth} from './firebase';
 import { onAuthStateChanged} from "firebase/auth";
 import {useDispatch, useSelector} from 'react-redux';
 import {logout,login,selectUser} from './features/userSlice';
+// import ProfileScreen from './components/ProfileScreen/ProfileScreen';
 import ProfileScreen from './components/ProfileScreen/ProfileScreen';
 
 function App() {
-  const user=null;
+  const user=useSelector(selectUser);
    const dispatch = useDispatch();
 useEffect(() => {
-const unsubscribe= onAuthStateChanged(auth,(userAuth)=>{
+ onAuthStateChanged(auth,(userAuth)=>{
    if(userAuth)
    {
     dispatch(login({
@@ -27,23 +28,23 @@ const unsubscribe= onAuthStateChanged(auth,(userAuth)=>{
      dispatch(logout());
    }
  })
-  return unsubscribe;
-}, [dispatch])
+//  return unsubscribe;
+}, [])
 
 
   return (
     <div className="app">
     
      <Router>
-      {user?<LoginScreen /> :
+      {!user?<LoginScreen /> :
        <Switch>
-         <Route path='/profile'>
-           <ProfileScreen />
-         </Route>
-
-       <Route path="/">
+        <Route path="/profile" exact>
+       <ProfileScreen user={user}/>
+       </Route>
+       <Route path="/" >
        <HomeScreen />
        </Route>
+       
      </Switch>
       }       
      </Router>

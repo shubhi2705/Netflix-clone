@@ -2,7 +2,13 @@ import React from 'react'
 import Nav from '../NavBar/Nav'
 import './ProfileScreen.css'
 import { auth } from '../../firebase'
-const ProfileScreen = () => {
+import userSlice from '../../features/userSlice'
+
+const ProfileScreen = (user) => {
+   const loggedInuser=user.user;
+  const  signout=()=>{
+        console.log("Inside SignOut");
+    }
     return (
         <div className='profileScreen'>
         <Nav/>
@@ -11,8 +17,9 @@ const ProfileScreen = () => {
           <div className='profileScreen_info'>
             <img src='https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png' alt='avatar'/>
         <div className='profileScreen_details'>
-            <h2>shubhi@gmail.com</h2>
+            <h2>{loggedInuser.email}</h2>
             <div className='profileScreen_plans'>
+                <h3>Plans</h3>
               <button onClick={()=>auth.signOut()}className='profileScreen_signOut'>Sign Out</button>
             </div>
         </div>
