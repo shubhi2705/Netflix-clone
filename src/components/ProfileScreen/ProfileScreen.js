@@ -3,6 +3,7 @@ import Nav from '../NavBar/Nav'
 import './ProfileScreen.css'
 import { auth } from '../../firebase'
 import userSlice from '../../features/userSlice'
+import PlanScreen from '../PlanScreen/PlanScreen'
 
 const ProfileScreen = (user) => {
    const loggedInuser=user.user;
@@ -20,6 +21,7 @@ const ProfileScreen = (user) => {
             <h2>{loggedInuser.email}</h2>
             <div className='profileScreen_plans'>
                 <h3>Plans</h3>
+                <PlanScreen />
               <button onClick={()=>auth.signOut()}className='profileScreen_signOut'>Sign Out</button>
             </div>
         </div>
