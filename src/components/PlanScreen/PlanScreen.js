@@ -29,21 +29,7 @@ const result=(Object.entries(products)).map(([productId,productData])=>{
 });
 const IDs=result.map(d=>d.productId);
 const productData=result.map(d=>d.productData);
-//  console.log(productData)
 const loadCheckout=async (id)=>{
-//     productData.map(product=>{
-//         if(product.id===id)
-//          {product.isSubscribed=!subscribed;
-//         //  console.log("true")
-//         }
-//          else{
-//              product.isSubscribed=subscribed;
-//             //  console.log(false)
-//          }
-//     })
-
-// console.log(productData)
-
 alert("Please register to Stripe payment gateway to pay the bill")
 }
 
